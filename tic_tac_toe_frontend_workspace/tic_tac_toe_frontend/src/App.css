@@ -1,0 +1,122 @@
+/* Modern Tic Tac Toe - Kavia light theme adaptation */
+:root {
+  --ttt-primary: #1976d2;      /* Main blue */
+  --ttt-secondary: #424242;    /* Dark gray for accent text */
+  --ttt-accent: #ffab00;       /* Amber accent for win/draw/highlight */
+  --ttt-board-bg: #fcfcfe;
+  --ttt-bg: #ffffff;
+  --ttt-border: #e9ecef;
+  --ttt-box-shadow: 0 4px 20px rgba(25,118,210,0.06);
+  --ttt-x: #1976d2;
+  --ttt-o: #424242;
+  --ttt-highlight-cell: #f5f8ff;
+  --ttt-cell-font: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+body, .App {
+  background: var(--ttt-bg);
+  color: var(--ttt-secondary);
+  min-height: 100vh;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.ttt-board {
+  outline: none;
+  user-select: none;
+}
+
+.ttt-cell {
+  background: var(--ttt-bg);
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s, box-shadow 0.15s;
+  border: none;
+  cursor: pointer;
+  font-family: var(--ttt-cell-font);
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--ttt-x);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: background, color;
+  overflow: hidden;
+  min-width: 64px;
+  min-height: 64px;
+  aspect-ratio: 1 / 1;
+}
+
+.ttt-cell:disabled {
+  cursor: default;
+  opacity: 0.94;
+  background: #f8fafc;
+}
+
+.ttt-cell.winner {
+  background: var(--ttt-accent) !important;
+  color: #fff !important;
+  box-shadow: 0 3px 16px #ffab0025;
+  animation: ttt-winner-pulse 0.7s;
+}
+
+@keyframes ttt-winner-pulse {
+  0% { box-shadow: 0 0px 0 #ffab0025; }
+  45% { box-shadow: 0 0 18px #ffab00aa; }
+  100% { box-shadow: 0 3px 16px #ffab0025; }
+}
+
+.ttt-reset-button {
+  background: var(--ttt-accent);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(255,171,0,0.06);
+  border-radius: 10px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-top: 1.8rem;
+  padding: 12px 40px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s, background 0.15s;
+  outline: none;
+}
+
+.ttt-reset-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: #e5e5e5;
+  color: #fffad1;
+}
+
+/* Responsive fun for mobile & small screens */
+@media (max-width: 600px) {
+  .App main {
+    padding: 14px !important;
+    border-radius: 16px !important;
+    min-width: 80vw !important;
+    max-width: 95vw !important;
+  }
+  .ttt-board {
+    grid-template-rows: repeat(3, 48px) !important;
+    grid-template-columns: repeat(3, 48px) !important;
+    max-width: 162px !important;
+  }
+  .ttt-cell {
+    font-size: 1.25rem !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .App main {
+    padding: 2vw !important;
+    font-size: 16px;
+  }
+}
